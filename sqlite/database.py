@@ -43,5 +43,6 @@ class Database:
 
     def _read_page(self, page_no: int):
         i = page_no - 1
+        self._db_file.seek(i * self._page_size)
         page_bytes = self._db_file.read(self._page_size)
         return Page.parse(page_bytes, 100 if i == 0 else 0)
